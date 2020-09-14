@@ -18,7 +18,7 @@ import { reducers, metaReducers } from './store/reducers';
 import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppEffects } from './store/effect/app.effects';
-import { TodoModule } from './todo.module';
+import { TodoModule } from './components/todo/todo.module';
 import { CoreModule } from './components/core.module';
 
 @NgModule({

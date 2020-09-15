@@ -1,30 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, concatMap } from 'rxjs/operators';
+import { catchError, map, concatMap, switchMap } from 'rxjs/operators';
 import { EMPTY, of } from 'rxjs';
 
 import * as TodoActions from '../actions/todo.actions';
+import { TodoService } from 'src/app/components/services/todo.service';
 
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TodoEffects {
+  loadTodos$ = createEffect(() =>
+    this.actions$.pipe(ofType(TodoActions.loadTodos),
+      switchMap(action => this.todoService.getAllTodo()
+        .pipe(map((res: any) => TodoActions.loadTodosSuccess({ todo: res })))),
+        catchError(error=> of(TodoActions.loadTodosFailure({error})))
+        ));
 
-  loadTodos$ = createEffect(() => {
-    return this.actions$.pipe( 
-
-      ofType(TodoActions.loadTodos),
-      concatMap(() =>
-        /** An EMPTY observable only emits completion. Replace with your own observable API request */
-        EMPTY.pipe(
-          map(data => TodoActions.loadTodosSuccess({ data })),
-          catchError(error => of(TodoActions.loadTodosFailure({ error }))))
-      )
-    );
-  });
-
-
-
-  constructor(private actions$: Actions) {}
+  constructor(private actions$: Actions, private todoService: TodoService) { }
 
 }

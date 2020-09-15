@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/login/logout/logout.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { TodoEditComponent } from './components/todo/todo-edit/todo-edit.component';
+import { TodoListComponent } from './components/todo/todo-list/todo-list.component';
 import { TodoComponent } from './components/todo/todo.component';
 
 const routes: Routes = [

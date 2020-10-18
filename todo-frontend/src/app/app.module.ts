@@ -19,6 +19,10 @@ import { AppEffects } from './store/effect/app.effects';
 import { TodoModule } from './components/todo/todo.module';
 import { CoreModule } from './components/core.module';
 import { HeaderComponent } from './components/header/header.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { HeaderComponent } from './components/header/header.component';
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     TodoModule,
-    CoreModule
+    CoreModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,23 @@
-<p>login works!</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5 ml-5">
+      <form [formGroup]="loginForm">
+        <div>
+          <mat-form-field class="example-full-width">
+            <mat-label>User Name</mat-label>
+            <input matInput type="text" formControlName="username"/>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password"/>
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" type="button" (click)="onLogin()">Log In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

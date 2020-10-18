@@ -1,4 +1,4 @@
-package com.todo.backend;
+package com.todo.backend.todo;
 
 import java.net.URI;
 import java.util.List;

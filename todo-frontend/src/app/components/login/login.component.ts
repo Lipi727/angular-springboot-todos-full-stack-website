@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  errorInvaildUserMessage="Invaild user name or password!";
+  invaildUser=false;
   constructor(private _fb : FormBuilder) {
   this.loginForm = this._fb.group({
       username : [''],
@@ -19,7 +21,12 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
-    console.log(this.loginForm.get('username')?.value);
+    if(this.loginForm.get('username')?.value=="Lipi" && this.loginForm.get('password')?.value==12345){
+      this.invaildUser=false;
+    }
+    else{
+      this.invaildUser=true;
+    }
   }
 
 }

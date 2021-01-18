@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import {  select, Store } from '@ngrx/store';
 import {  from, Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -18,12 +19,13 @@ export class TodoListComponent implements OnInit {
   private alive = new Subject<void>();
   todo$!:Observable<Todo[]>;
   displayedColumns: string[] = ['SNo', 'Username', 'Discription', 'TargetDate', 'IsDone', 'Action'];
-  constructor(private todoStore: Store<TodoState>) { }
+  username!:string;
+  constructor(private todoStore: Store<TodoState>, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.todo$ = this.todoStore.pipe(takeUntil(this.alive), select(getAllTodos));
     this.todoStore.dispatch(loadTodos());
-    console.log(this.todo$);
+    this.username=this.route.snapshot.params['username'];
   }
 
 }

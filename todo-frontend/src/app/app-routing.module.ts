@@ -8,13 +8,13 @@ import { TodoListComponent } from './components/todo/todo-list/todo-list.compone
 import { TodoComponent } from './components/todo/todo.component';
 
 const routes: Routes = [
-  {path: 'todos', component:TodoComponent, children:[
+  {path: 'todos/:username', component:TodoComponent, children:[
     {path:'new', component:TodoEditComponent},
     {path: ':id/edit', component:TodoEditComponent}
   ]},
   {path: 'login', component:LoginComponent},
   {path: 'logout', component:LogoutComponent},
-  {path:'' ,redirectTo:'/todos', pathMatch:'full'},
+  {path:'' ,redirectTo:'/login', pathMatch:'full'},
   {path:'**', component: PageNotFoundComponent}
 ];
 

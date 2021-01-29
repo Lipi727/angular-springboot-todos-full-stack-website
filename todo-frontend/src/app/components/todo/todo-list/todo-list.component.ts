@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {  select, Store } from '@ngrx/store';
-import {  from, Observable, Subject } from 'rxjs';
+import {  from, Observable, of, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { Todo } from '../../../models/todo';
+import { initialTodo, Todo } from '../../../models/todo';
 import { loadTodos } from '../store/actions/todo.actions';
 import { TodoState } from '../store/reducers/todo.reducer';
 import { getAllTodos } from '../store/selectors/todo.selectors';
@@ -17,7 +17,8 @@ import { getAllTodos } from '../store/selectors/todo.selectors';
 export class TodoListComponent implements OnInit {
 
   private alive = new Subject<void>();
-  todo$!:Observable<Todo[]>;
+
+  todo$!:Observable<Todo[]>; /// = of(initialTodo);
   displayedColumns: string[] = ['SNo', 'Username', 'Discription', 'TargetDate', 'IsDone', 'Action'];
   username!:string;
   constructor(private todoStore: Store<TodoState>, private route: ActivatedRoute) { }

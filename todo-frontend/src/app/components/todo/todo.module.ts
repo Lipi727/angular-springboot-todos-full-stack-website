@@ -5,6 +5,7 @@ import { SharedModule } from '../../shared/shared.module'
 import { TodoEffects } from './store/effects/todo.effects';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoEditComponent } from './todo-edit/todo-edit.component';
+import { DeleteDialogComponent } from './dialog/delete-dialog/delete-dialog.component';
 
 
 
@@ -12,6 +13,7 @@ import { TodoEditComponent } from './todo-edit/todo-edit.component';
   declarations: [
     TodoListComponent,
     TodoEditComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     CommonModule,

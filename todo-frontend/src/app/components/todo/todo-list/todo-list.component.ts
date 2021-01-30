@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import {  select, Store } from '@ngrx/store';
 import {  from, Observable, of, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { initialTodo, Todo } from '../../../models/todo';
+import { DeleteDialogComponent } from '../dialog/delete-dialog/delete-dialog.component';
 import { loadTodos } from '../store/actions/todo.actions';
 import { TodoState } from '../store/reducers/todo.reducer';
 import { getAllTodos } from '../store/selectors/todo.selectors';
@@ -21,7 +23,8 @@ export class TodoListComponent implements OnInit {
   todo$!:Observable<Todo[]>; /// = of(initialTodo);
   displayedColumns: string[] = ['SNo', 'Username', 'Discription', 'TargetDate', 'IsDone', 'Action'];
   username!:string;
-  constructor(private todoStore: Store<TodoState>, private route: ActivatedRoute) { }
+
+  constructor(private todoStore: Store<TodoState>, private route: ActivatedRoute, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.todo$ = this.todoStore.pipe(takeUntil(this.alive), select(getAllTodos));
@@ -29,4 +32,7 @@ export class TodoListComponent implements OnInit {
     this.username=this.route.snapshot.params['username'];
   }
 
+  openDeleteDialog() {
+    const dialogRef = this.dialog.open(DeleteDialogComponent);
+  }
 }

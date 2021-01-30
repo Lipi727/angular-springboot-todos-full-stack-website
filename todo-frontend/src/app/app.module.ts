@@ -24,6 +24,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     TodoNotFoundComponent,
     SignUpComponent,
     HeaderComponent
+  
   ],
   imports: [
     BrowserModule,

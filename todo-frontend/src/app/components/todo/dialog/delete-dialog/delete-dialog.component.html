@@ -1,0 +1,10 @@
+<div>
+  <div>
+    <i class="material-icons clearIcon" (click)="closeDialog()">clear</i>
+  </div>
+  <div mat-dialog-content>Are you really want to delete this item?</div>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="warn" type="button">Yes</button>
+    <button mat-raised-button color="primary" type="button" (click)="closeDialog()">No</button>
+  </div>
+</div>

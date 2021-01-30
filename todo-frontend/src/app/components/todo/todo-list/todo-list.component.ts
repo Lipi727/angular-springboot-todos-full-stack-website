@@ -7,6 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { initialTodo, Todo } from '../../../models/todo';
 import { DeleteDialogComponent } from '../dialog/delete-dialog/delete-dialog.component';
+import { EditDialogComponent } from '../dialog/edit-dialog/edit-dialog.component';
 import { loadTodos } from '../store/actions/todo.actions';
 import { TodoState } from '../store/reducers/todo.reducer';
 import { getAllTodos } from '../store/selectors/todo.selectors';
@@ -30,6 +31,10 @@ export class TodoListComponent implements OnInit {
     this.todo$ = this.todoStore.pipe(takeUntil(this.alive), select(getAllTodos));
     this.todoStore.dispatch(loadTodos());
     this.username=this.route.snapshot.params['username'];
+  }
+
+  openEditDialog(){
+    const dialogRef = this.dialog.open(EditDialogComponent);
   }
 
   openDeleteDialog() {

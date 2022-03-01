@@ -2,6 +2,9 @@ package com.todo.backend.todo;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Todo {
 	private long id;
 	private String username;

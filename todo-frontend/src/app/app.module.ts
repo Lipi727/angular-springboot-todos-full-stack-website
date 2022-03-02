@@ -23,6 +23,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpIntercepterBasicAuthService } from './services/http-intercepter-basic-auth.service';
 
 
 @NgModule({
@@ -53,7 +55,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:HttpIntercepterBasicAuthService,multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

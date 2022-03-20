@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   errorInvaildUserMessage="Invaild user name or password!";
   invaildUser=false;
-  constructor(private _fb : FormBuilder, private router: Router) {
+  
+  constructor(private _fb : FormBuilder, private router: Router, private authenticationService: AuthenticationService) {
   this.loginForm = this._fb.group({
       username : [''],
       password : ['']
@@ -22,10 +24,11 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(){
-    if(this.loginForm.get('username')?.value=="Lipi" && this.loginForm.get('password')?.value==12345){
+    if(this.authenticationService.authenticate(this.loginForm.get('username')?.value, this.loginForm.get('password')?.value)){
       // redirect to todo page
       this.router.navigate(['todos', this.loginForm.get('username')?.value]);
       this.invaildUser=false;
+      console.log(this.authenticationService.isUserLoggedIn());
     }
     else{
       this.invaildUser=true;
@@ -34,3 +37,5 @@ export class LoginComponent implements OnInit {
   }
 
 }
+
+

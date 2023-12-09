@@ -1,8 +1,10 @@
-package com.todo.backend.todo;
+package com.todo.backend.todo.controller;
 
 import java.net.URI;
 import java.util.List;
 
+import com.todo.backend.todo.service.impl.TodoServiceImpl;
+import com.todo.backend.todo.modal.Todo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,22 +25,22 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 public class TodoController {
 
 	@Autowired 
-	private TodoService todoService;
+	private TodoServiceImpl todoServiceImpl;
 	
 	@GetMapping("/users/{username}/todos")
 	public List<Todo> getAllTodos(@PathVariable String username){
-		return todoService.getAll();
+		return todoServiceImpl.getAll();
 	}
 	
 	@PutMapping("/users/{username}/todos/{id}")
 	public ResponseEntity<Todo> updateTodo(@PathVariable String username,@PathVariable long id,  @RequestBody  Todo todo){
-		Todo updatedTodo = todoService.save(todo);
+		Todo updatedTodo = todoServiceImpl.save(todo);
 		return new ResponseEntity<Todo>(updatedTodo, HttpStatus.OK);
 	}
 	
 	@PostMapping("/users/{username}/todos")
 	public ResponseEntity<Void> insertTodo(@PathVariable String username, @RequestBody  Todo todo){
-		Todo creattedTodo = todoService.save(todo);
+		Todo creattedTodo = todoServiceImpl.save(todo);
 		//get current resource URL & append
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(creattedTodo.getId()).toUri();
 		return ResponseEntity.created(uri).build();
@@ -46,7 +48,7 @@ public class TodoController {
 	
 	@DeleteMapping("/users/{username}/todos/{id}")
 	public ResponseEntity<Void> deleteTodo(@PathVariable String username, @PathVariable long id){
-		Todo todo = todoService.deleteById(id);
+		Todo todo = todoServiceImpl.deleteById(id);
 		if(todo!=null) {
 			return ResponseEntity.noContent().build();
 		}

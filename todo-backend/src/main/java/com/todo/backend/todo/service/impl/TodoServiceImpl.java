@@ -1,16 +1,18 @@
-package com.todo.backend.todo;
+package com.todo.backend.todo.service.impl;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.todo.backend.todo.modal.Todo;
+import com.todo.backend.todo.service.TodoService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TodoService {
+public class TodoServiceImpl implements TodoService {
 	
 	//Here hard coded data are used. In the real time we will get data by a database.
-	private static List<Todo> todos = new ArrayList<Todo>();
+	private static final List<Todo> todos = new ArrayList<Todo>();
 	private static int idCounter=0;
 	
 	static {

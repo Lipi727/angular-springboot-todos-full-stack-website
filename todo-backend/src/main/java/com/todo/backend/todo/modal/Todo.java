@@ -1,4 +1,4 @@
-package com.todo.backend.todo;
+package com.todo.backend.todo.modal;
 
 import java.util.Date;
 
